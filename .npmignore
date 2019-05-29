@@ -1,0 +1,9 @@
+.idea
+.nyc_output
+node_modules/
+doc/
+coverage/
+test/
+bench*
+codeclimate*
+.*
