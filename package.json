@@ -1,6 +1,6 @@
 {
   "name": "@etk/common",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Common",
   "main": "index.js",
   "types": "index.d.ts",

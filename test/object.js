@@ -3,7 +3,7 @@
  */
 "use strict";
 const assert = require("assert");
-const O = require("../src/object");
+const O = require("../").object;
 describe("object", () => {
 	const input = {
 		a: 1,
