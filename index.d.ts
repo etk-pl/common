@@ -23,6 +23,13 @@ export function get_ses_send_email(ses: SES): (options: SendEmailOptions) => Pro
 
 /**
  *
+ * @param  {number} pid
+ * @returns {boolean}
+ */
+export function process_exists(pid: number): boolean
+
+/**
+ *
  * @param {string} string
  * @returns {string}
  * @link https://stackoverflow.com/a/30851002/5361130
