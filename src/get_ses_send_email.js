@@ -8,7 +8,7 @@
  * @returns {function({to: string, from: string, subject: string, body: string, reply_to?: string, charset?: string}): Promise<*>}
  */
 module.exports = {
-	get_ses_send_message: (ses) => {
+	get_ses_send_email: (ses) => {
 		/**
 		 * @param {Object} options
 		 * @param {string} options.to
@@ -19,7 +19,7 @@ module.exports = {
 		 * @param {string} [options.charset="UTF-8"]
 		 * @returns {Promise<*>}
 		 */
-		return function send_email({to, from, subject, body, reply_to, charset = "UTF-8"}) {
+		function send_email({to, from, subject, body, reply_to, charset = "UTF-8"}) {
 			return new Promise((resolve, reject) => {
 				const data = {
 					Destination: {ToAddresses: [to]},
@@ -47,6 +47,8 @@ module.exports = {
 					resolve(result);
 				});
 			});
-		};
+		}
+
+		return send_email;
 	}
 };
