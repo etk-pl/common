@@ -78,3 +78,35 @@ interface SendEmailOptions {
     reply_to: string;
     charset?: string;
 }
+
+/**
+ *
+ * @param ms
+ * @returns {Promise<void>}
+ */
+export function sleep(ms: number): Promise<void>;
+
+/**
+ *
+ * @param ms
+ */
+export function timeout(ms: number): Promise<void>;
+
+/**
+ *
+ */
+interface retryOptions {
+    retries?: number,
+    delay?: number,
+    timeout?: number
+}
+
+/**
+ *
+ * @param fn
+ * @param args
+ * @param thisArg
+ * @param options
+ * @returns {*}
+ */
+export function retry(fn: Function, args, thisArg?: object, options?: retryOptions):Promise<any>;
