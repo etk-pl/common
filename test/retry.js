@@ -27,12 +27,21 @@ describe("retry", async () => {
 		await assert.rejects(() => retry(fail, [o], null, {delay: 1}));
 		assert.strictEqual(o.c, 5);
 	});
-	it("lazy timeouted", async () => {
+	it("lazy timeout", async () => {
 		const o = {c: 0};
 		await assert.rejects(() => retry(lazy, [o], null, {
 			delay: 0,
 			timeout: 1
 		}));
 		assert.strictEqual(o.c, 5);
+	});
+	it("lazy timeout (throws instance of Error)", async () => {
+		const o = {c: 0};
+		await retry(lazy, [o], null, {
+			delay: 0,
+			timeout: 1
+		}).then(() => Promise.reject(new Error("Should timeout"))).catch((err) => {
+			assert(err instanceof Error, "Instance of Error");
+		});
 	});
 });
