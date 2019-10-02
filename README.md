@@ -24,15 +24,15 @@ message_text("testType", "messageTest.txt", "pl", {}).then((result) => {
 	console.log(result);
 });
 ```
-##Object methods
-###Object.filter(object, Callback)
-###Object.map(object, Callback)
-###Object.find(object, Callback)
-###Object.forEach(object, Callback)
+## Object methods
+### Object.filter(object, Callback)
+### Object.map(object, Callback)
+### Object.find(object, Callback)
+### Object.forEach(object, Callback)
 
-##process_exists(pid)
+## process_exists(pid)
 Checks if process with specified process id exists
-###Example
+### Example
 ```js
 const childProcess = child_process.spawn("tail", [
   "/dev/zero",
@@ -41,10 +41,10 @@ const childProcess = child_process.spawn("tail", [
 //returns true
 console.log(process_exists(childProcess.pid));
 ```
-##retry(function, args, thisArg, options)
-###options = {retries, delay, timeout}
+## retry(function, args, thisArg, options)
+### options = {retries, delay, timeout}
 It tries to run function number of times specified in retries
-###Example
+### Example
 ```js
 const fail = (o) => {
   if (o.count !== 3) {
