@@ -2,6 +2,7 @@
  * @author Michał Żaloudik <ponury.kostek@gmail.com>
  */
 "use strict";
+const ExtError = require("exterror");
 module.exports = {
 	object: {
 		/**
@@ -68,6 +69,9 @@ module.exports = {
  * @param callback
  */
 function traverse(object, callback) {
+	if (!(object instanceof Object)) {
+		throw new ExtError("ERR_VALUE_MUST_BE_OBJECT", "Provided value is not instance of object");
+	}
 	const entries = Object.entries(object);
 	const length = entries.length;
 	for (let i = 0; i < length; i++) {
