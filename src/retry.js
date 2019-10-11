@@ -4,6 +4,18 @@
 "use strict";
 const {sleep} = require("./sleep");
 const {timeout: _timeout} = require("./timeout");
+const ExtError = require("exterror");
+
+/**
+ *
+ * @param {function} fn
+ * @param args
+ * @param thisArg
+ * @param {number} retries
+ * @param {number} delay
+ * @param {number} timeout
+ * @returns {Promise}
+ */
 
 async function retry(fn, args, thisArg = null, {retries = 5, delay = 1000, timeout = 5000} = {}) {
 	retries = retries | 0;
@@ -34,7 +46,7 @@ async function retry(fn, args, thisArg = null, {retries = 5, delay = 1000, timeo
 			}
 		}
 	} while (retries > 0);
-	throw last_error;
+	throw ExtError.from(last_error);
 }
 
 module.exports = {retry};
