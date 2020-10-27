@@ -14,10 +14,11 @@ const ExtError = require("exterror");
  * @param {number} retries
  * @param {number} delay
  * @param {number} timeout
+ * @param {Error} timeout_error
  * @returns {Promise}
  */
 
-async function retry(fn, args, thisArg = null, {retries = 5, delay = 1000, timeout = 5000} = {}) {
+async function retry(fn, args, thisArg = null, {retries = 5, delay = 1000, timeout = 5000, timeout_error} = {}) {
 	retries = retries | 0;
 	delay = delay | 0;
 	timeout = timeout | 0;
@@ -35,7 +36,7 @@ async function retry(fn, args, thisArg = null, {retries = 5, delay = 1000, timeo
 		try {
 			const promises = [fn.apply(thisArg, args)];
 			if (timeout) {
-				promises.push(_timeout(timeout));
+				promises.push(_timeout(timeout, timeout_error));
 			}
 			return await Promise.race(promises);
 		} catch (e) {
